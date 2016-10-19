@@ -1,0 +1,39 @@
+{
+  "author": "Raghu Katti @rakatti <rakatti@gmail.com>",
+  "contributors": [
+  ],
+  "name": "winston-dconsole-daily-rotate-file",
+  "homepage": "",
+  "description": "Winston daily rotate file with the dconsole (trace) info when used in debug mode.",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rkatti/winston-dconsole-daily-rotate-file.git"
+  },
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:rkatti/winston-dconsole-daily-rotate-file.git"
+  },
+  "keywords": [
+    "winston",
+    "daily-rotate-file",
+    "dconsole-daily-rotate-file",
+    "log-rotate",
+    "logrotate",
+    "dconsole"
+  ],
+  "author": "Raghu Katti <rakatti@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rkatti/winston-dconsole-daily-rotate-file/issues"
+  },
+  "homepage": "https://github.com/rkatti/winston-dconsole-daily-rotate-file#readme",
+  "peerDependencies": {
+    "winston-daily-rotate-file": "1.3.1"
+  }
+}
+
