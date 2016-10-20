@@ -6,20 +6,15 @@ http://opensource.org/licenses/MIT
 
 var path = require('path');
 var util = require('util');
-var DailyRotateFile = require('winston-daily-rotate-file').DailyRotateFile;
+var wdrf = require('winston-daily-rotate-file');
 var stackTrace = require('stack-trace');
+var winston = require('winston');
 
+var DailyRotateFile = require('winston').transports.DailyRotateFile;
 
-var DconsoleDailyRotateFile = module.exports = function(arguments) {
-   this.super_.apply(this, arguments);
-}
-
-util.inherits(DconsoleDailyRotateFile, DailyRotateFile);
 
 function traceCaller() {
-    var trace = stackTrace.get(DailyRotateFile.prototype.log);
-
-    console.log ("ZZZZZZZZZZZZZZZZZZ here in tracecaller ZZZZZZ " + trace)
+    var trace = stackTrace.get(DconsoleDailyRotateFile.prototype.log);
 
     if (trace.length >= 7) {
         var functionName = trace[5].getFunctionName() || "",
@@ -36,6 +31,20 @@ function traceCaller() {
     return null;
 }
 
+
+
+var DconsoleDailyRotateFile = module.exports = function(options) {
+    winston.transports.DailyRotateFile.call(this, options);
+    options = options || {};
+
+    // Set transport name
+    //this.name = 'DconsoleDailyRotateFile';
+
+    this.highlightLabel = !!options.label && !!options.highlightLabels &&
+        options.highlightLabels.indexOf(this.label) >= 0;
+}
+
+util.inherits(DconsoleDailyRotateFile, winston.transports.DailyRotateFile );
 
 
 DconsoleDailyRotateFile.prototype.log = function (level, msg, meta, callback) {
@@ -57,6 +66,4 @@ DconsoleDailyRotateFile.prototype.log = function (level, msg, meta, callback) {
     DconsoleDailyRotateFile.super_.prototype.log.call(this, level, msg, meta, callback);
     this.label = orgLabel;
 };
-
-
 
